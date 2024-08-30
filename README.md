@@ -34,6 +34,8 @@ The Focused Reader is a browser extension designed to help maintain focus while 
 - **Enable the Overlay:** Use the extension's popup to enable or disable the page blocker.
 - **Adjust Overlay Settings:** Customize the transparency and control the line reveal using your keyboard and mouse.
 
+![Demo](https://github.com/tomemme/focusedReader/blob/main/toolDemo.gif)
+
 ## Development
 
 ### File Structure
