@@ -1,0 +1,18 @@
+{
+    "manifest_version": 3,
+    "name": "Page Blocker Reader",
+    "version": "1.0",
+    "description": "An extension to reveal lines of text gradually as you read.",
+    "permissions": ["activeTab", "scripting"],
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["functions.js", "content.js"],
+        "css": ["styles.css"]
+      }
+    ],
+    "action": {
+      "default_popup": "popup.html"
+    }
+  }
+  

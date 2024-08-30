@@ -1,0 +1,4 @@
+/* styles.css */
+body {
+    overflow: hidden; /* Prevent scrolling while the overlay is active */
+}
