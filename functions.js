@@ -82,17 +82,22 @@ function decreaseTransparency() {
 }
 
 function toggleScrolling() {
-    scrollEnabled = !scrollEnabled;
-    document.body.style.overflow = scrollEnabled ? 'auto' : 'hidden';
-    console.log("Scroll mode " + (scrollEnabled ? "enabled" : "disabled"));
-    updateOverlay(); // update the scroll indicator
+    if (overlay) { // Only toggle scrolling if the overlay exists
+        scrollEnabled = !scrollEnabled;
+        document.body.style.overflow = scrollEnabled ? 'auto' : 'hidden';
+        console.log("Scroll mode " + (scrollEnabled ? "enabled" : "disabled"));
+        updateOverlay(); // Update the indicator text when toggling scroll mode
+    }
 }
+
 
 function removeOverlay() {
     const overlayElement = document.querySelector('div[style*="z-index: 9999"]');
     if (overlayElement) {
         overlayElement.remove();
-        console.log("Overlay removed.");
+        scrollEnabled = false; // Reset scroll mode when disabling
+        document.body.style.overflow = 'auto'; // Ensure scrolling is enabled
+        console.log("Overlay removed and scrolling unlocked.");
     }
 }
 
