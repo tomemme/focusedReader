@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "name": "Page Blocker Reader",
+    "name": "Focused Reader",
     "version": "1.0",
     "description": "An extension to reveal lines of text gradually as you read.",
     "permissions": ["activeTab", "scripting"],

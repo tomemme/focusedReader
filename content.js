@@ -1,3 +1,3 @@
 // content.js
-console.log("Page Blocker Reader loaded.");
+console.log("Focused Reader loaded.");
 createOverlay(); // Initialize the overlay on page load
