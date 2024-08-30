@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 chrome.scripting.executeScript({
                     target: { tabId: tabs[0].id },
                     func: createOverlay
+                }, () => {
+                    window.close(); // Close the popup after enabling
                 });
             });
         });
@@ -24,6 +26,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 chrome.scripting.executeScript({
                     target: { tabId: tabs[0].id },
                     func: removeOverlay
+                }, () => {
+                    window.close(); // Close the popup after disabling
                 });
             });
         });

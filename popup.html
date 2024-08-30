@@ -6,6 +6,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Focused Reader</title>
     <script src="functions.js"></script> <!-- Include functions.js -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 10px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 150px; /* Set a minimum width for the popup */
+            border: 2px solid #0056b3; /* Add a border around the popup */
+            border-radius: 10px; /* Optional: add rounded corners */
+            background-color: #f9f9f9; /* Optional: light background color for contrast */
+        }
+
+        button {
+            width: 100px;
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            border: 2px solid #0056b3;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+            border-color: #003f7f;
+        }
+    </style>
 </head>
 <body>
     <h3>Focused Reader</h3>
