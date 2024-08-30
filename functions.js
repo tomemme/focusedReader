@@ -3,6 +3,7 @@ let overlay;
 let revealHeight = 50; // Initial height of the revealed area in pixels
 let scrollEnabled = false; // Track whether scroll mode is enabled
 let transparency = 0.8; // Initial transparency (0.8 means 80% opaque)
+let scrollIndicator; // element to show the scroll lock status
 
 function createOverlay() {
     overlay = document.querySelector('div[style*="z-index: 9999"]');
@@ -16,6 +17,21 @@ function createOverlay() {
         overlay.style.backgroundColor = `rgba(0, 0, 0, ${transparency})`; // Semi-transparent black
         overlay.style.zIndex = '9999';
         overlay.style.pointerEvents = 'none'; // Allow interactions with the page under the overlay
+
+        // scroll lock status indicator
+        scrollIndicator = document.createElement('div');
+        scrollIndicator.style.position = 'fixed';
+        scrollIndicator.style.top = '10px';
+        scrollIndicator.style.right = '10px';
+        scrollIndicator.style.color = 'white';
+        scrollIndicator.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+        scrollIndicator.style.padding = '5px 10px';
+        scrollIndicator.style.borderRadius = '5px';
+        scrollIndicator.style.fontSize = '14px';
+        scrollIndicator.style.zIndex = '10000'; // make sure its above everything else
+        scrollIndicator.textContent = `Scroll Lock: ${scrollEnabled ? 'Enabled' : 'Disabled'}`;
+
+        overlay.appendChild(scrollIndicator);
 
         document.body.appendChild(overlay);
 
@@ -32,6 +48,8 @@ function updateOverlay() {
     if (overlay) {
         overlay.style.clipPath = `inset(${revealHeight}px 0 0 0)`;
         overlay.style.backgroundColor = `rgba(0, 0, 0, ${transparency})`;
+        scrollIndicator.style.top = `${revealHeight + 10}px`; // Keep the indicator within the revealed area
+        scrollIndicator.textContent = `Scroll Lock: ${scrollEnabled ? 'Enabled' : 'Disabled'}`;
     }
 }
 
@@ -67,6 +85,7 @@ function toggleScrolling() {
     scrollEnabled = !scrollEnabled;
     document.body.style.overflow = scrollEnabled ? 'auto' : 'hidden';
     console.log("Scroll mode " + (scrollEnabled ? "enabled" : "disabled"));
+    updateOverlay(); // update the scroll indicator
 }
 
 function removeOverlay() {
