@@ -55,14 +55,14 @@ function updateOverlay() {
 
 function increaseReveal() {
     if (!scrollEnabled) { // Only increase reveal when scroll mode is disabled
-        revealHeight += 20; // Increase the revealed area by 20px
+        revealHeight += 10; // Increase the revealed area by 20px
         updateOverlay();
     }
 }
 
 function decreaseReveal() {
-    if (!scrollEnabled && revealHeight > 20) { // Only decrease reveal when scroll mode is disabled
-        revealHeight -= 20; // Decrease the revealed area by 20px
+    if (!scrollEnabled && revealHeight > 10) { // Only decrease reveal when scroll mode is disabled
+        revealHeight -= 10; // Decrease the revealed area by 20px
         updateOverlay();
     }
 }
