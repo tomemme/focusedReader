@@ -4,6 +4,7 @@ let revealHeight = 50; // Initial height of the revealed area in pixels
 let scrollEnabled = false; // Track whether scroll mode is enabled
 let transparency = 0.8; // Initial transparency (0.8 means 80% opaque)
 let scrollIndicator; // element to show the scroll lock status
+let isRkeyPressed = false; //track if the r key is pressed
 
 function createOverlay() {
     overlay = document.querySelector('div[style*="z-index: 9999"]');
@@ -39,8 +40,12 @@ function createOverlay() {
 
         // Add event listeners for controlling the overlay
         window.addEventListener('keydown', handleKeyDown);
+        window.addEventListener('keyup', handleKeyUp);
         window.addEventListener('wheel', handleWheel);
         window.addEventListener('mousedown', handleMouseDown);
+        window.addEventListener('click', handlePageClick);
+        
+    
     }
 }
 
@@ -63,6 +68,14 @@ function increaseReveal() {
 function decreaseReveal() {
     if (!scrollEnabled && revealHeight > 10) { // Only decrease reveal when scroll mode is disabled
         revealHeight -= 10; // Decrease the revealed area by 20px
+        updateOverlay();
+    }
+}
+
+function handlePageClick() {
+    if (isRkeyPressed && overlay) {
+        const clickedY = event.clientY;
+        revealHeight = clickedY;
         updateOverlay();
     }
 }
@@ -103,6 +116,9 @@ function removeOverlay() {
 
 // Event listener functions
 function handleKeyDown(event) {
+    if (event.key === 'r' || event.key === 'R') {
+        isRkeyPressed = true;
+    }
     if (event.key === 'ArrowDown' || event.key === 'PageDown') {
         increaseReveal();
     } else if (event.key === 'ArrowUp' || event.key === 'PageUp') {
@@ -113,6 +129,12 @@ function handleKeyDown(event) {
         decreaseTransparency();
     } else if (event.key === 's' || event.key === 'S') {
         toggleScrolling();
+    }
+}
+
+function handleKeyUp(event) {
+    if (event.key === 'r' || event.key == 'R') {
+        isRkeyPressed = false; 
     }
 }
 
@@ -131,3 +153,5 @@ function handleMouseDown(event) {
         toggleScrolling();
     }
 }
+
+document.body.style.overflow = 'auto';
