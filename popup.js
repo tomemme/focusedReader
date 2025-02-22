@@ -1,7 +1,6 @@
-// popup.js
 document.addEventListener('DOMContentLoaded', function() {
     console.log("popup.js loaded");
-    
+
     const enableButton = document.getElementById('enableButton');
     const disableButton = document.getElementById('disableButton');
 
@@ -9,11 +8,8 @@ document.addEventListener('DOMContentLoaded', function() {
         enableButton.addEventListener('click', () => {
             console.log("Enable button clicked.");
             chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-                chrome.scripting.executeScript({
-                    target: { tabId: tabs[0].id },
-                    func: createOverlay
-                }, () => {
-                    window.close(); // Close the popup after enabling
+                chrome.tabs.sendMessage(tabs[0].id, { action: "enableOverlay" }, () => {
+                    window.close();
                 });
             });
         });
@@ -23,11 +19,8 @@ document.addEventListener('DOMContentLoaded', function() {
         disableButton.addEventListener('click', () => {
             console.log("Disable button clicked.");
             chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-                chrome.scripting.executeScript({
-                    target: { tabId: tabs[0].id },
-                    func: removeOverlay
-                }, () => {
-                    window.close(); // Close the popup after disabling
+                chrome.tabs.sendMessage(tabs[0].id, { action: "disableOverlay" }, () => {
+                    window.close();
                 });
             });
         });

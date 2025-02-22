@@ -2,3 +2,13 @@
 body {
     overflow: hidden; /* Prevent scrolling while the overlay is active */
 }
+
+#focusOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(128, 128, 128, 0.7);
+    z-index: 1000;
+    pointer-events: none;
+}
