@@ -1,6 +1,6 @@
 # Focused Reader Browser Extension
 
-![GUI](https://github.com/tomemme/focusedReader/blob/main/FocusedReader.png)
+![GUI](https://github.com/tomemme/focusedReader/blob/main/Focused%20Reader.png)
 
 **Version:** 1.2
 
